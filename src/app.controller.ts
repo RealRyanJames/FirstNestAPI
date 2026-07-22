@@ -76,11 +76,11 @@ class StatesInfo implements InfoStates {
 
 
   isState(): boolean {
-    if (this.state === '' && this.city === '') {
-      return false;
+    if (this.state != '' && this.city != '') {
+      return true;
     }
 
-    return true;
+    return false;
   }
 
 }
@@ -119,9 +119,12 @@ export class AppController implements IClient {
   @Get('/state/MA/pop')
   getPop() {
     const state = new StatesInfo('MA', 'Boston');
-    return `
-      Population of ${state.getState()} is
-      ${state.getStateMAPopulation()}`;
+
+    if (state.isState()) {
+      return `
+        Population of ${state.getState()} is
+        ${state.getStateMAPopulation()}`;
+    }
   }
 
   @Get('/Amazing')
