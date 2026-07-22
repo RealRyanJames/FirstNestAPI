@@ -12,7 +12,6 @@ interface InfoStates {
   city: string;
   pop: number;
   is_capital(): boolean;
-
   get_pop(pop: number): number | string;
 
   isState(): boolean;
@@ -49,6 +48,15 @@ class StatesInfo implements InfoStates {
     return String(`Currently Population is: ${this.pop}`);
   }
 
+
+  getStateMAPopulation(): string | number {
+    if (this.pop == this.get_pop(this.pop)) {
+      return this.pop;
+    }
+
+    return this.pop;
+  }
+
   public getState(): string {
     return this.state;
   }
@@ -74,6 +82,7 @@ class StatesInfo implements InfoStates {
 
     return true;
   }
+
 }
 
 @Controller()
@@ -99,14 +108,20 @@ export class AppController implements IClient {
     if (state.getState()) {
       console.log('State is Initialized');
     }
-
-
     return `
 
           ${this.getUpperCase(state.getState())}
           ${this.getUpperCase(state.getCity())}
           ${state.is_capital()}
       `;
+  }
+
+  @Get('/state/MA/pop')
+  getPop() {
+    const state = new StatesInfo('MA', 'Boston');
+    return `
+      Population of ${state.getState()} is
+      ${state.getStateMAPopulation()}`;
   }
 
   @Get('/Amazing')
