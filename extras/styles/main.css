@@ -1,0 +1,30 @@
+body {
+  background-color: rgb(89, 45, 234);
+  font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+h2 {
+  font-size: 20px;
+  text-transform: uppercase;
+  border-bottom: 2px solid #101010;
+  letter-spacing: 6px;
+}
+
+label {
+  padding: 20px;
+  margin: calc(30px / 2);
+}
+
+@media screen and (max-width: 500px) {
+  h2 {
+    font-size: calc(40px / 2);
+    text-transform: uppercase;
+    border-bottom: 2px solid #101010;
+    letter-spacing: 0;
+  }
+}

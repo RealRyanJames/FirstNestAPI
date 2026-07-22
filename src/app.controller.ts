@@ -7,7 +7,6 @@ interface IClient {
 }
 
 interface InfoStates {
-
   state: string;
   city: string;
   pop: number;
@@ -21,8 +20,7 @@ interface InfoStates {
 }
 
 class StatesInfo implements InfoStates {
-
-  pop: number;
+  pop: number = 0;
   state: string;
   city: string;
 
@@ -32,7 +30,6 @@ class StatesInfo implements InfoStates {
   }
 
   public is_big_population(population: number): boolean {
-
     if (this.get_pop(population) == this.pop) {
       return true;
     }
@@ -47,7 +44,6 @@ class StatesInfo implements InfoStates {
 
     return String(`Currently Population is: ${this.pop}`);
   }
-
 
   getStateMAPopulation(): string | number {
     if (this.pop == this.get_pop(this.pop)) {
@@ -66,14 +62,12 @@ class StatesInfo implements InfoStates {
   }
 
   public is_capital(): boolean {
-
     if (this.city == this.getCity()) {
       return true;
     }
 
     return false;
   }
-
 
   isState(): boolean {
     if (this.state != '' && this.city != '') {
@@ -82,12 +76,10 @@ class StatesInfo implements InfoStates {
 
     return false;
   }
-
 }
 
 @Controller()
 export class AppController implements IClient {
-
   getClient(): string {
     return 'Hello I am Amazing People';
   }
@@ -96,7 +88,7 @@ export class AppController implements IClient {
     return str.toUpperCase();
   }
 
-  constructor(private readonly appService: AppService) { }
+  constructor(private readonly appService: AppService) {}
   @Get()
   getHello(): string {
     return this.appService.getHello();
