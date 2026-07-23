@@ -1,7 +1,17 @@
 "use strict";
 const checked = document.getElementById('ma');
-const button = document.getElementById('button');
-button.addEventListener('click', () => {
+class Runner {
+    getClientsInfo() {
+        return 'Sucessfully Working';
+    }
+    getLowerApplication(text) {
+        return text.toLowerCase();
+    }
+    buttonUI(btn) {
+        return btn;
+    }
+}
+function setup() {
     if (checked.checked) {
         console.log('Checked');
         async function getMainInfo() {
@@ -14,4 +24,8 @@ button.addEventListener('click', () => {
         }
         main().catch((_) => console.log(_));
     }
-});
+}
+const button = document.getElementById('button');
+const client = new Runner();
+const btnClient = client.buttonUI(button);
+btnClient.addEventListener('click', setup);

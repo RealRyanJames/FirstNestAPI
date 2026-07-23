@@ -13,6 +13,27 @@ h2 {
   text-transform: uppercase;
   border-bottom: 2px solid #101010;
   letter-spacing: 6px;
+  margin-top: 30px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+header {
+  padding: calc(10px * 2.5);
+  background-color: rgb(33, 33, 33);
+}
+
+header > div a {
+  color: white;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 label {
