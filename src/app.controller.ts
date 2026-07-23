@@ -78,6 +78,37 @@ class StatesInfo implements InfoStates {
   }
 }
 
+enum StateDefective {
+  NH,
+  MAINE,
+  MA,
+  CALI,
+}
+
+enum StateCapital {
+  BOSTON,
+  AUGUSTA,
+  CONCORD,
+  SACCROMENTO,
+}
+
+interface IStateObject {
+
+  getSateName(state: StateDefective): StateDefective;
+  getCapital(state: StateCapital): StateCapital;
+}
+
+class States implements IStateObject {
+
+  getCapital(state: StateCapital): StateCapital {
+    return state;
+  }
+
+  getSateName(state: StateDefective): StateDefective {
+    return state;
+  }
+}
+
 @Controller()
 export class AppController implements IClient {
   getClient(): string {
@@ -96,21 +127,44 @@ export class AppController implements IClient {
 
   @Get('/states/MA')
   getStateMA() {
-    const state = new StatesInfo('MA', 'Boston');
-    if (state.getState()) {
-      console.log('State is Initialized');
+    const state = new States();
+
+    const states = state.getSateName(StateDefective.MA);
+    const stateCap = state.getCapital(StateCapital.BOSTON);
+
+    if (states == StateDefective.MA && stateCap == StateCapital.BOSTON) {
+      console.log('Massachusetts Is Found');
     }
     return `
 
-          ${this.getUpperCase(state.getState())}
-          ${this.getUpperCase(state.getCity())}
-          ${state.is_capital()}
+          ${this.getUpperCase(states.toString())}
+          ${this.getUpperCase(stateCap.toString())}
+          ${this.getUpperCase(String(stateCap))}
       `;
   }
 
   @Get('/state/MA/pop')
   getPop() {
-    const state = new StatesInfo('MA', 'Boston');
+    const state = new States();
+
+    const states = state.getSateName(StateDefective.MA);
+    const stateCap = state.getCapital(StateCapital.BOSTON);
+
+    if (states == StateDefective.MA && stateCap == StateCapital.BOSTON) {
+      console.log('Populion of MA was Found');
+    }
+
+    return `
+
+          ${this.getUpperCase(states.toString())}
+          ${this.getUpperCase(stateCap.toString())}
+          ${this.getUpperCase(String(stateCap))}
+      `;
+  }
+
+  @Get('')
+  getStateNH() {
+    const state = new StatesInfo('NH', 'Concord');
 
     if (state.isState()) {
       return `
