@@ -1,7 +1,25 @@
 const checked = document.getElementById('ma') as HTMLInputElement;
 
-const button = document.getElementById('button') as HTMLButtonElement;
-button.addEventListener('click', () => {
+interface IClients {
+  getClientsInfo(): string;
+  getLowerApplication(text: string): string;
+}
+
+class Runner implements IClients {
+  getClientsInfo(): string {
+    return 'Sucessfully Working';
+  }
+
+  getLowerApplication(text: string): string {
+    return text.toLowerCase();
+  }
+
+  buttonUI(btn: HTMLButtonElement): HTMLButtonElement {
+    return btn;
+  }
+}
+
+function setup() {
   if (checked.checked) {
     console.log('Checked');
 
@@ -17,4 +35,10 @@ button.addEventListener('click', () => {
 
     main().catch((_) => console.log(_));
   }
-});
+}
+
+const button = document.getElementById('button') as HTMLButtonElement;
+const client = new Runner();
+const btnClient = client.buttonUI(button);
+
+btnClient.addEventListener('click', setup);
