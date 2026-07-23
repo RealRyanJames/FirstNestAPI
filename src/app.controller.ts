@@ -93,13 +93,11 @@ enum StateCapital {
 }
 
 interface IStateObject {
-
   getSateName(state: StateDefective): StateDefective;
   getCapital(state: StateCapital): StateCapital;
 }
 
 class States implements IStateObject {
-
   getCapital(state: StateCapital): StateCapital {
     return state;
   }
@@ -127,20 +125,12 @@ export class AppController implements IClient {
 
   @Get('/states/MA')
   getStateMA() {
-    const state = new States();
+    const state = new StatesInfo('MA', 'BOSTON');
 
-    const states = state.getSateName(StateDefective.MA);
-    const stateCap = state.getCapital(StateCapital.BOSTON);
-
-    if (states == StateDefective.MA && stateCap == StateCapital.BOSTON) {
-      console.log('Massachusetts Is Found');
-    }
     return `
-
-          ${this.getUpperCase(states.toString())}
-          ${this.getUpperCase(stateCap.toString())}
-          ${this.getUpperCase(String(stateCap))}
-      `;
+ 
+      State: ${state.getState()} : City: ${state.getCity()}
+    `;
   }
 
   @Get('/state/MA/pop')

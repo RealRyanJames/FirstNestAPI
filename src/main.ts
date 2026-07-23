@@ -2,7 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 interface PortObjects {
-
   getProt(port: number): number;
 }
 
@@ -13,9 +12,9 @@ class PortsCreated implements PortObjects {
 }
 
 async function bootstrap() {
-
   const port = new PortsCreated();
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   await app.listen(process.env.PORT ?? port.getProt(3000));
 }
 
