@@ -1,5 +1,6 @@
 "use strict";
-const checked = document.getElementById('ma');
+const checkedMA = document.getElementById('ma');
+const checkedNH = document.getElementById('NH');
 class Runner {
     getClientsInfo() {
         return 'Sucessfully Working';
@@ -12,7 +13,7 @@ class Runner {
     }
 }
 function setup() {
-    if (checked.checked) {
+    if (checkedMA.checked) {
         console.log('Checked');
         async function getMainInfo() {
             const r = await fetch('http://localhost:3000/states/MA');
@@ -23,6 +24,17 @@ function setup() {
             doc1.textContent = await getMainInfo();
         }
         main().catch((_) => console.log(_));
+    }
+    if (checkedNH.checked) {
+        async function getMainInfoNH() {
+            const r = await fetch('http://localhost:3000/states/NH');
+            return r.text();
+        }
+        async function mainNH() {
+            const doc1 = document.getElementById('elment');
+            doc1.textContent = await getMainInfoNH();
+        }
+        mainNH().catch((_) => console.log(_));
     }
 }
 const button = document.getElementById('button');

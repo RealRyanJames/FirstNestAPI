@@ -152,14 +152,15 @@ export class AppController implements IClient {
       `;
   }
 
-  @Get('')
+  @Get('/states/NH')
   getStateNH() {
-    const state = new StatesInfo('NH', 'Concord');
+    const stateNH = new StatesInfo('NH', 'Concord');
 
-    if (state.isState()) {
+    if (stateNH.isState()) {
       return `
-        Population of ${state.getState()} is
-        ${state.getStateMAPopulation()}`;
+ 
+      State: ${stateNH.getState()} : City: ${stateNH.getCity()}
+    `;
     }
   }
 

@@ -1,4 +1,5 @@
-const checked = document.getElementById('ma') as HTMLInputElement;
+const checkedMA = document.getElementById('ma') as HTMLInputElement;
+const checkedNH = document.getElementById('NH') as HTMLInputElement;
 
 interface IClients {
   getClientsInfo(): string;
@@ -20,7 +21,7 @@ class Runner implements IClients {
 }
 
 function setup() {
-  if (checked.checked) {
+  if (checkedMA.checked) {
     console.log('Checked');
 
     async function getMainInfo() {
@@ -34,6 +35,19 @@ function setup() {
     }
 
     main().catch((_) => console.log(_));
+  }
+
+  if (checkedNH.checked) {
+    async function getMainInfoNH() {
+      const r = await fetch('http://localhost:3000/states/NH');
+      return r.text();
+    }
+
+    async function mainNH() {
+      const doc1 = document.getElementById('elment') as HTMLElement;
+      doc1.textContent = await getMainInfoNH();
+    }
+    mainNH().catch((_) => console.log(_));
   }
 }
 
