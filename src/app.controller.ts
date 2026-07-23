@@ -164,6 +164,18 @@ export class AppController implements IClient {
     }
   }
 
+  @Get('/states/Maine')
+  getStateMaine() {
+    const stateMaine = new StatesInfo('Maine', 'Augusta');
+
+    if (stateMaine.isState()) {
+      return `
+ 
+      State: ${stateMaine.getState()} : City: ${stateMaine.getCity()}
+    `;
+    }
+  }
+
   @Get('/Amazing')
   getMessage() {
     return this.getUpperCase(this.getClient());

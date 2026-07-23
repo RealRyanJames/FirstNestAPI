@@ -1,6 +1,7 @@
 "use strict";
 const checkedMA = document.getElementById('ma');
 const checkedNH = document.getElementById('NH');
+const checkedMaine = document.getElementById('Maine');
 class Runner {
     getClientsInfo() {
         return 'Sucessfully Working';
@@ -35,6 +36,17 @@ function setup() {
             doc1.textContent = await getMainInfoNH();
         }
         mainNH().catch((_) => console.log(_));
+    }
+    if (checkedMaine.checked) {
+        async function getMainInfoMaine() {
+            const r = await fetch('http://localhost:3000/states/Maine');
+            return r.text();
+        }
+        async function mainMaine() {
+            const doc1 = document.getElementById('elment');
+            doc1.textContent = await getMainInfoMaine();
+        }
+        mainMaine().catch((_) => console.log(_));
     }
 }
 const button = document.getElementById('button');

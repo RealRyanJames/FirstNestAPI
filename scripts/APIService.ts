@@ -1,5 +1,6 @@
 const checkedMA = document.getElementById('ma') as HTMLInputElement;
 const checkedNH = document.getElementById('NH') as HTMLInputElement;
+const checkedMaine = document.getElementById('Maine') as HTMLInputElement;
 
 interface IClients {
   getClientsInfo(): string;
@@ -48,6 +49,19 @@ function setup() {
       doc1.textContent = await getMainInfoNH();
     }
     mainNH().catch((_) => console.log(_));
+  }
+
+  if (checkedMaine.checked) {
+    async function getMainInfoMaine() {
+      const r = await fetch('http://localhost:3000/states/Maine');
+      return r.text();
+    }
+
+    async function mainMaine() {
+      const doc1 = document.getElementById('elment') as HTMLElement;
+      doc1.textContent = await getMainInfoMaine();
+    }
+    mainMaine().catch((_) => console.log(_));
   }
 }
 
